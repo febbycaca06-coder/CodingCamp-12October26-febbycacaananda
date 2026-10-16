@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List Life Dashboard</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+
+    <!-- ───────────── HEADER: Greeting + Clock ───────────── -->
+    <header class="header">
+      <div class="header__inner">
+        <div class="greeting">
+          <p id="greeting-text" class="greeting__text">Good morning!</p>
+          <h1 id="clock" class="greeting__clock">00:00:00</h1>
+          <p id="date-text" class="greeting__date">Loading date…</p>
+        </div>
+        <div class="header__logo">
+          <span class="logo-icon">📋</span>
+          <span class="logo-label">Life Dashboard</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ───────────── MAIN CONTENT ───────────── -->
+    <main class="main">
+
+      <!-- ── Row 1: Focus Timer + Quick Links ── -->
+      <div class="row row--top">
+
+        <!-- Focus Timer -->
+        <section class="card card--timer" aria-label="Focus Timer">
+          <h2 class="card__title">
+            <span class="card__icon">⏱</span> Focus Timer
+          </h2>
+          <div class="timer__display" id="timer-display">25:00</div>
+          <div class="timer__controls">
+            <button class="btn btn--primary" id="timer-start">▶ Start</button>
+            <button class="btn btn--secondary" id="timer-stop">⏸ Pause</button>
+            <button class="btn btn--ghost" id="timer-reset">↺ Reset</button>
+          </div>
+          <div class="timer__progress-wrap">
+            <div class="timer__progress-bar" id="timer-bar"></div>
+          </div>
+          <p class="timer__label" id="timer-status">Ready to focus 🎯</p>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="card card--links" aria-label="Quick Links">
+          <h2 class="card__title">
+            <span class="card__icon">🔗</span> Quick Links
+          </h2>
+
+          <!-- Add link form -->
+          <form class="links__form" id="link-form" autocomplete="off">
+            <input
+              class="input"
+              type="text"
+              id="link-name"
+              placeholder="Name (e.g. YouTube)"
+              maxlength="30"
+              required
+            />
+            <input
+              class="input"
+              type="url"
+              id="link-url"
+              placeholder="https://..."
+              required
+            />
+            <button class="btn btn--primary btn--full" type="submit">
+              + Add Link
+            </button>
+          </form>
+
+          <!-- Link list -->
+          <ul class="links__list" id="links-list"></ul>
+        </section>
+
+      </div><!-- end row--top -->
+
+      <!-- ── Row 2: To-Do List ── -->
+      <div class="row row--bottom">
+
+        <section class="card card--todo" aria-label="To-Do List">
+          <h2 class="card__title">
+            <span class="card__icon">✅</span> To-Do List
+          </h2>
+
+          <!-- Stats bar -->
+          <div class="todo__stats">
+            <span id="stats-total">0 tasks</span>
+            <span id="stats-done">0 done</span>
+            <span id="stats-pending">0 pending</span>
+          </div>
+
+          <!-- Filter tabs -->
+          <div class="todo__filters" role="tablist">
+            <button class="filter-btn active" data-filter="all" role="tab">All</button>
+            <button class="filter-btn" data-filter="pending" role="tab">Pending</button>
+            <button class="filter-btn" data-filter="done" role="tab">Done</button>
+          </div>
+
+          <!-- Add task form -->
+          <form class="todo__form" id="todo-form" autocomplete="off">
+            <input
+              class="input"
+              type="text"
+              id="task-input"
+              placeholder="Add a new task…"
+              maxlength="120"
+              required
+            />
+            <button class="btn btn--primary" type="submit">+ Add</button>
+          </form>
+
+          <!-- Task list -->
+          <ul class="todo__list" id="todo-list"></ul>
+
+          <!-- Clear completed -->
+          <div class="todo__footer">
+            <button class="btn btn--ghost btn--sm" id="clear-done">
+              🗑 Clear completed
+            </button>
+          </div>
+        </section>
+
+      </div><!-- end row--bottom -->
+
+    </main>
+
+    <!-- ───────────── EDIT MODAL ───────────── -->
+    <div class="modal-overlay" id="modal-overlay" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <h3 id="modal-title" class="modal__title">Edit Task</h3>
+        <input class="input" type="text" id="modal-input" maxlength="120" />
+        <div class="modal__actions">
+          <button class="btn btn--primary" id="modal-save">Save</button>
+          <button class="btn btn--ghost" id="modal-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
